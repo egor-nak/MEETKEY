@@ -1,0 +1,25 @@
+{% extends "mn.html" %}
+{% block content %}
+<meta charset="UTF-8">
+{% for job in coments %}
+<div class="t-slds__item " data-slide-index = {{loop.index}}>
+    <div class="t-width t-width_7 t-margin_auto">
+        <div class="t-slds__wrapper t-align_center">
+            <div class="t605__text t-text t-text_md " field="li_text__1477576758810"
+                 data-animate-order="1" data-animate-delay="0.3" style="">{{job.content}}
+            </div>
+            <div class="t605__title t-name t-name_lg " field="li_title__1477576758810"
+                 data-animate-order="2" data-animate-delay="0.3" style="">{{names[job.usid]}}
+            </div>
+            <div data-animate-order="3" data-animate-delay="0.3" style="">
+            {% if cr != 'hi' and cr.is_authenticated and job.usid == cr.id %}
+                <a class="btn btn-danger" href="/api/commentsdel/{{job.id}}" style="color:white">DELETE</a>
+                <a class="btn btn-warning" href="/commentsedit/{{job.id}}" style="color:white">EDIT</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

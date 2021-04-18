@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Registration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="../static/fonts/style.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="../static/css/regstyle.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>-->
+	</head>
+
+	<body>
+	<div class="wrapper">
+        <table>
+        <tr>
+        <th>
+		<form action="" method="post">
+		{{ form.hidden_tag() }}
+            <h3>Comment</h3>
+			<div class="inner">
+				<form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.content.label }}<br>
+            {{ form.content(class="form-control") }}<br>
+            {% for error in form.content.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+                    <a class="btn btn-success" href="/logout">Log out</a>
+        <a class="btn btn-success" href="/">Back on main page</a>
+            {{message}}
+        </th>
+
+        </tr>
+    </form>
+    </table>
+
+        <img src="../static/img/image-2.png" alt="" class="image-2">
+		<script src="../static/js/jquery-3.3.1.min.js"></script>
+		<script src="js/main.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

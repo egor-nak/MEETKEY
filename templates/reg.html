@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Registration</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="../static/fonts/style.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="../static/css/regstyle.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--    <link rel="stylesheet" type="text/css" href="../static/css/style.css"/>-->
+	</head>
+
+	<body>
+	<div class="wrapper">
+		<form action="" method="post">
+		{{ form.hidden_tag() }}
+	    {{ form.csrf_token }}
+
+			<div class="inner">
+				<img src="../static/img/image-1.png" alt="" class="image-1">
+				<form action="">
+					<h3>New Account?</h3>
+					<!--
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="text" class="form-control" placeholder="Username">
+					</div>
+					-->
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+					<p>
+        				{{ form.name.label }}<br>
+        				{{ form.name(class="form-control") }}<br>
+        				{% for error in form.name.errors %}
+    				<p class="alert alert-danger" role="alert">
+        				{{ error }}
+				    </p>
+    					{% endfor %}
+    				</p>
+					</div>
+					<!--
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input type="text" class="form-control" placeholder="Mail">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input type="password" class="form-control" placeholder="Confirm Password">
+					</div>
+					<button>
+						<span>Register</span>
+					</button>
+					-->
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+					<p>
+						{{ form.email.label }}<br>
+						{{ form.email(class="form-control", type="email") }}<br>
+						{% for error in form.email.errors %}
+					<p class="alert alert-danger" role="alert">
+						{{ error }}
+					</p>
+					{% endfor %}
+					</p>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+					<p>
+						{{ form.password.label }}<br>
+						{{ form.password(class="form-control", type="password") }}<br>
+						{% for error in form.password.errors %}
+					<p class="alert alert-danger" role="alert">
+						{{ error }}
+					</p>
+					{% endfor %}
+					</p>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+					<p>
+						{{ form.password_again.label }}<br>
+						{{ form.password_again(class="form-control", type="password") }}<br>
+						{% for error in form.password_again.errors %}
+					<p class="alert alert-danger" role="alert">
+						{{ error }}
+					</p>
+					{% endfor %}
+					</p>
+					</div>
+				<p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+				<a class="btn btn-success" href="/login">Sign up</a>
+                {{message}}
+				</form>
+				<img src="../static/img/image-2.png" alt="" class="image-2">
+
+		<script src="../static/js/jquery-3.3.1.min.js"></script>
+		<script src="js/main.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
