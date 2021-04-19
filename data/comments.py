@@ -20,4 +20,4 @@ class News(SqlAlchemyBase, SerializerMixin):
     user = orm.relation('User')
 
     def __repr__(self):
-        return f'<Job> {self.content} {self.user}'
+        return f'<Job> {self.content} {self.usid}'

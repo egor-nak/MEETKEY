@@ -33,7 +33,10 @@ def login():
         login_user(user)
         namecur = user.id
         # print(namecur)
-        print(1000)
+        try:
+            print(current_user)
+        except Exception:
+            print('no')
         return jsonify({'success': 'OK'})
     else:
         return jsonify({'error': 'Wrong password'})
@@ -92,11 +95,19 @@ def delete_news(news_id):
     global namecur
     try:
         db_sess = db_session.create_session()
-        news = db_sess.query(News).get(news_id)
-        if news.usid == namecur:
-            if not news:
-                return jsonify({'error': 'Not found'})
-            db_sess.delete(news)
+        news = db_sess.query(News).all()
+        flag = False
+        nw = ''
+        for i in news:
+            print(i.id, news_id)
+            if int(i.id) == news_id:
+                flag = True
+                nw = i
+                break
+        if not flag:
+            return jsonify({'error': 'Not found'})
+        if nw.usid == namecur:
+            db_sess.delete(nw)
             db_sess.commit()
             return redirect("/")
         else:
