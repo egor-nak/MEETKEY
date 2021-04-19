@@ -163,7 +163,8 @@ def edit_news(id):
 def main():
     db_session.global_init("db/main_data.db")
     app.register_blueprint(comments_api.blueprint)
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
     logout_user()
 
 
