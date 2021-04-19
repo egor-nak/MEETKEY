@@ -72,6 +72,11 @@ def get_one_news(news_id):
 def create_news():
     global namecur
     try:
+        namecur = current_user.id
+        print('iii')
+    except Exception:
+        return jsonify({'error': 'please log in'})
+    try:
         if not request.json:
             return jsonify({'error': 'Empty request'})
         elif not all(key in request.json for key in
@@ -93,6 +98,11 @@ def create_news():
 @blueprint.route('/api/commentsdel/<int:news_id>')
 def delete_news(news_id):
     global namecur
+    try:
+        namecur = current_user.id
+        print('iii')
+    except Exception:
+        return jsonify({'error': 'please log in'})
     try:
         db_sess = db_session.create_session()
         news = db_sess.query(News).all()
