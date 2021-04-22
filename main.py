@@ -22,17 +22,20 @@ login_manager.init_app(app)
 namecur = ''
 
 
+# Обработка ошибки
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 
+# коннект с базой данных
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
     return db_sess.query(User).get(user_id)
 
 
+# главная страница
 @app.route("/")
 def root():
     db_sess = db_session.create_session()
@@ -50,11 +53,13 @@ def root():
         return render_template("addcomettomainpage.html", coments=jobs, names=names, cr='hi')
 
 
+# кнопка скачать
 @app.route("/download", methods=['GET', 'POST'])
 def hi():
     return send_file('text.txt', as_attachment=True)
 
 
+# страница регестрации
 @app.route("/reg", methods=['GET', 'POST'])
 def reg():
     global namecur
@@ -81,10 +86,10 @@ def reg():
     return render_template('reg.html', title='Регистрация', form=form)
 
 
+# страница входа
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     global namecur
-    # print(current_user.id)
     form = LoginForm()
     if form.validate_on_submit():
         db_sess = db_session.create_session()
@@ -92,12 +97,12 @@ def login():
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
             namecur = user.name
-            # print(namecur)
             return redirect(f"/addjob/{user.id}")
         return render_template('log.html', message="Wrong login or password", form=form)
     return render_template('log.html', title='Authorization', form=form)
 
 
+# добавление комментариев
 @app.route('/addjob/<int:id>', methods=['GET', 'POST'])
 def addjob(id):
     global namecur
@@ -120,6 +125,7 @@ def addjob(id):
         return "log in please"
 
 
+# разлогиниться
 @app.route('/logout')
 @login_required
 def logout():
@@ -127,6 +133,7 @@ def logout():
     return redirect("/")
 
 
+# редактирование комментария
 @app.route('/commentsedit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_news(id):
